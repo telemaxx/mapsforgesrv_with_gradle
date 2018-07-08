@@ -11,6 +11,7 @@ public class MapsforgeSrv {
 		System.out.println("MapsforgeSrv - a mapsforge tile server");
 		
 		
+		
 		if (args.length < 1)
 			;
 			//help();
