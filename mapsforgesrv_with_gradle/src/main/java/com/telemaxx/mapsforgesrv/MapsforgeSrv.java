@@ -10,7 +10,6 @@ public class MapsforgeSrv {
 	public static void main(String[] args) throws Exception {
 		System.out.println("MapsforgeSrv - a mapsforge tile server");
 		
-
 		
 		if (args.length < 1)
 			;
