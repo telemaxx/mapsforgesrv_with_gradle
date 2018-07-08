@@ -2,7 +2,8 @@
 ### mapsforgesrv cloned from mobac project:
 https://sourceforge.net/p/mobac/code/HEAD/tree/trunk/tools/MapsforgeSrv/
 
-The MapsforgeSrv is a local webserver providing rendered <a href="http://wiki.openstreetmap.org/wiki/Mapsforge">Mapsforge</a> map tiles.
+The MapsforgeSrv is a local webserver providing rendered mapsforge map tiles.
+http://wiki.openstreetmap.org/wiki/Mapsforge
 The tiles are rendered every time on-the fly when requested
 
 The description of this tool you find at the orign page, see above.
