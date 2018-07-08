@@ -12,6 +12,7 @@ public class MapsforgeSrv {
 		
 		
 		
+		
 		if (args.length < 1)
 			;
 			//help();
