@@ -1,5 +1,5 @@
 # mapsforgesrv with gradle
-### mapsforgesrv cloned from mobac project:
+### mapsforgesrv cloned from the MOBAC project:
 http://mobac.sourceforge.net/
 
 The MapsforgeSrv is a local webserver providing rendered mapsforge map tiles.
