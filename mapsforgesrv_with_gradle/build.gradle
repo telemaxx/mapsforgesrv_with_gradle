@@ -13,7 +13,7 @@ apply plugin: 'java-library'
 repositories {
     // Use jcenter for resolving your dependencies.
     // You can declare any Maven/Ivy/file repository here.
-    //jcenter()
+    jcenter()
     mavenCentral()
 }
 
@@ -29,16 +29,17 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     
   	implementation 'org.mapsforge:mapsforge-core:[0.9.1]'
 	implementation 'org.mapsforge:mapsforge-map:[0.9.1]'
 	implementation 'org.mapsforge:mapsforge-map-reader:[0.9.1]'
 	implementation 'org.mapsforge:mapsforge-themes:[0.9.1]'
-	
 	implementation 'org.mapsforge:mapsforge-map-awt:[0.9.1]'
-	implementation 'com.metsci.ext.com.kitfox.svg:svg-salamander:0.1.19'
+	implementation 'org.mapsforge:mapsforge-poi-awt:[0.9.1]'	
 	
-	implementation 'org.mapsforge:mapsforge-poi-awt:[0.9.1]'
+	implementation 'com.metsci.ext.com.kitfox.svg:svg-salamander:0.1.19'
+
 	implementation 'org.xerial:sqlite-jdbc:3.20.0'
 	
 	implementation 'net.sf.kxml:kxml2:2.3.0' 
