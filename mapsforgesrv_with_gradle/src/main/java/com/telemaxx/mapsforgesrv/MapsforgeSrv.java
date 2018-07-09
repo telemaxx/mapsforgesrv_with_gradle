@@ -11,7 +11,7 @@ public class MapsforgeSrv {
 		System.out.println("MapsforgeSrv - a mapsforge tile server");
 		if (args.length < 1)
 			help();
-
+ 
 		File mapFile = new File(args[0]);
 		System.out.println("Map file: " + mapFile);
 		if (!mapFile.isFile()) {
