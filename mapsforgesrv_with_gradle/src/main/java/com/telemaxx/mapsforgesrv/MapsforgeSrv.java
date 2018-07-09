@@ -9,13 +9,10 @@ public class MapsforgeSrv {
 
 	public static void main(String[] args) throws Exception {
 		System.out.println("MapsforgeSrv - a mapsforge tile server");
-
 		if (args.length < 1)
-			;
-			//help();
+			help();
 
-		//File mapFile = new File(args[0]);
-		File mapFile = new File("C:\\Users\\top\\BTSync\\oruxmaps\\mapfiles\\Germany_ML.map");
+		File mapFile = new File(args[0]);
 		System.out.println("Map file: " + mapFile);
 		if (!mapFile.isFile()) {
 			System.err.println("ERROR: Map file does not exist!");
@@ -23,22 +20,20 @@ public class MapsforgeSrv {
 		}
 
 		File themeFile = null;
-		//if (args.length > 1) {
-			{
-			//themeFile = new File(args[1]);
-				themeFile = new File("C:\\Users\\top\\BTSync\\oruxmaps\\mapstyles\\ELV\\Elements.xml");
+		if (args.length > 1) {
+			themeFile = new File(args[1]);
 			System.out.println("Render theme file: " + themeFile);
 			if (!themeFile.isFile()) {
 				System.err.println("ERROR: Render theme file does not exist!");
 				System.exit(1);
 			}
-		//} else {
-			//System.out.println("Theme: OSMARENDER");
+		} else {
+			System.out.println("Theme: OSMARENDER");
 		}
 
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
+
 		Server server = new Server(InetSocketAddress.createUnresolved("localhost", 8080));
-		
 		server.setHandler(mapsforgeHandler);
 		try {
 			server.start();

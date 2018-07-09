@@ -33,7 +33,6 @@ import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.GraphicFactory;
 import org.mapsforge.core.mapelements.MapElementContainer;
 import org.mapsforge.core.model.Tile;
-
 import org.mapsforge.map.awt.graphics.AwtGraphicFactory;
 import org.mapsforge.map.awt.graphics.AwtTileBitmap;
 import org.mapsforge.map.datastore.MultiMapDataStore;
@@ -86,11 +85,9 @@ public class MapsforgeHandler extends AbstractHandler {
 		multiMapDataStore.addMapDataStore(new MapFile(mapFile), true, true);
 
 		displayModel = new DisplayModel();
-		//renderer = new DatabaseRenderer(multiMapDataStore, graphicFactory, labelInfoCache, null, false, false, null);
-		renderer = new DatabaseRenderer(multiMapDataStore, graphicFactory, labelInfoCache, tileBasedLabelStore, true, true, null);
-		//renderer = new DatabaseRenderer(multiMapDataStore, graphicFactory, labelInfoCache, null, STARTED, _doStarted, null);
-		renderThemeFuture = new RenderThemeFuture(graphicFactory, xmlRenderTheme, displayModel);
 
+		renderer = new DatabaseRenderer(multiMapDataStore, graphicFactory, labelInfoCache, tileBasedLabelStore, true, true, null);
+		renderThemeFuture = new RenderThemeFuture(graphicFactory, xmlRenderTheme, displayModel);
 		XmlRenderThemeMenuCallback callBack = new XmlRenderThemeMenuCallback() {
 
 			@Override
@@ -272,7 +269,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		response.setContentType("image/" + ext);
 		ImageIO.write(image, ext, response.getOutputStream());
 	}
-	
+
 	private static class MyTileBasedLabelStore extends TileBasedLabelStore {
 
 		public MyTileBasedLabelStore(int capacity) {

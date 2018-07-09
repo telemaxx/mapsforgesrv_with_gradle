@@ -1,11 +1,11 @@
 package com.telemaxx.mapsforgesrv;
 import java.util.HashSet;
-import java.util.Observer;
 import java.util.Set;
 
 import org.mapsforge.core.graphics.TileBitmap;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.queue.Job;
+import org.mapsforge.map.model.common.Observer;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -57,24 +57,14 @@ public class DummyCache implements TileCache {
 		set.clear();
 	}
 
+	@Override
 	public void addObserver(Observer observer) {
 		throw new NotImplementedException();
 	}
 
+	@Override
 	public void removeObserver(Observer observer) {
 		throw new NotImplementedException();
-	}
-
-	@Override
-	public void addObserver(org.mapsforge.map.model.common.Observer observer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void removeObserver(org.mapsforge.map.model.common.Observer observer) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
