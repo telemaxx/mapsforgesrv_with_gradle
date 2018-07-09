@@ -15,5 +15,5 @@ Whats different to the orign?
 	2. updates all other libs to latest versions
 	3. build system "gradle" for easier libs management.
 	4. new command line interface: -m mapfile -t themefile(optinal)
-	5. optional port selection(optional). eg -p 8081
+	5. port selection(optional). eg -p 8081
 	
