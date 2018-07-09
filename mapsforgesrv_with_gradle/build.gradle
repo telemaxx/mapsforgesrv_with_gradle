@@ -47,7 +47,7 @@ dependencies {
     implementation 'org.eclipse.jetty:jetty-server:9.4.11.v20180605'
     //implementation 'org.eclipse.jetty:jetty-server:9.2.10.v20150310'
     
-    implementation 'org.slf4j:slf4j-api:2.11.0'
+    //implementation 'org.slf4j:slf4j-api:2.11.0'
     
     implementation 'com.badlogicgames.gdx:gdx:1.9.8'
 	implementation 'com.badlogicgames.gdx:gdx-platform:1.9.8:natives-desktop'

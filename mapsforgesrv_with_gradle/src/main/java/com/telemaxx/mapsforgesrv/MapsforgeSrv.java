@@ -12,15 +12,22 @@ public class MapsforgeSrv {
 		
 		String mapFilePath = null;
 		String themeFilePath = null;
+		final int DEFAULTPORT = 8080; 
+		String portNumberString = "" + DEFAULTPORT;
 		
 		Options options = new Options();
+		
 		Option mapfileArgument = new Option("m", "mapfile", true, "mapsforge map file(.map)");
 	    mapfileArgument.setRequired(true);
 	    options.addOption(mapfileArgument);
 		
         Option themefileArgument = new Option("t", "themefile", true, "mapsforge theme file(.xml)");
         themefileArgument.setRequired(false);
-        options.addOption(themefileArgument);	
+        options.addOption(themefileArgument);
+        
+        Option portArgument = new Option("p", "port", true, "port, where the server is listening(default: 8080)");
+        portArgument.setRequired(false);
+        options.addOption(portArgument);
         
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
@@ -34,21 +41,41 @@ public class MapsforgeSrv {
             System.exit(1);
         }
         
-        mapFilePath = cmd.getOptionValue("mapfile").trim();
-        
-        themeFilePath = cmd.getOptionValue("themefile");
-        if (themeFilePath != null) {
-        	themeFilePath = themeFilePath.trim();
+        int portNumber = DEFAULTPORT;
+        portNumberString = cmd.getOptionValue("port");
+        if (portNumberString != null) {
+        	try {
+        		portNumberString = portNumberString.trim();
+        		//System.out.println("portString" + portNumberString);
+        		portNumber = Integer.parseInt(portNumberString);
+        		if (portNumber < 1024 || portNumber > 65535) {
+        			portNumber = DEFAULTPORT;
+        			System.out.println("portnumber not 1024-65535, exit");
+        			System.exit(1);
+        		} else {
+        			System.out.println("using port: " + portNumber);
+        		}
+        	} catch (NumberFormatException e){
+        		portNumber = DEFAULTPORT;
+        		System.out.println("couldnt parse portnumber, using " + DEFAULTPORT);
+        		//e.printStackTrace();
+        	}
+        } else {
+        	System.out.println("no port given, using " + DEFAULTPORT);
         }
         
+        mapFilePath = cmd.getOptionValue("mapfile").trim();
         File mapFile = new File(mapFilePath);
 		System.out.println("Map file: " + mapFile);
-		
 		if (!mapFile.isFile()) {
 			System.err.println("ERROR: Map file does not exist!");
 			System.exit(1);
 		}
-
+		
+        themeFilePath = cmd.getOptionValue("themefile");
+        if (themeFilePath != null) {
+        	themeFilePath = themeFilePath.trim();
+        }
 		File themeFile = null;
 		if (themeFilePath != null) {	
 			themeFile = new File(themeFilePath);
@@ -61,9 +88,11 @@ public class MapsforgeSrv {
 			System.out.println("Theme: OSMARENDER");
 		}
 
+		//System.exit(0);
+		
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
 
-		Server server = new Server(InetSocketAddress.createUnresolved("localhost", 8080));
+		Server server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
 		server.setHandler(mapsforgeHandler);
 		try {
 			server.start();
