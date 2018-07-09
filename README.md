@@ -14,4 +14,5 @@ Whats different to the orign?
 	1. mapsforge libs updated from 0.6 to 0.91
 	2. updates all other libs to latest versions
 	3. build system "gradle" for easier libs management.
+	4. new command line interface: -m mapfile -t themefile(optinal)
 	
