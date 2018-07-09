@@ -104,9 +104,8 @@ public class MapsforgeHandler extends AbstractHandler {
 				Set<String> result = new HashSet<>();
 				for (Entry<String, XmlRenderThemeStyleLayer> entry : styleMenu.getLayers().entrySet()) {
 					XmlRenderThemeStyleLayer overlay = entry.getValue();
-					System.out.println(
-							overlay.getId() + " -> " + overlay.getTitle("en") + " enabled: " + overlay.isEnabled());
-					System.out.println("\t categories: " + Arrays.toString(entry.getValue().getCategories().toArray()));
+					//System.out.println(overlay.getId() + " -> " + overlay.getTitle("en") + " enabled: " + overlay.isEnabled());
+					//System.out.println("\t categories: " + Arrays.toString(entry.getValue().getCategories().toArray()));
 					String propValue = prop.getProperty(overlay.getId());
 					boolean overlayEnabled = overlay.isEnabled();
 					if (propValue != null) {
