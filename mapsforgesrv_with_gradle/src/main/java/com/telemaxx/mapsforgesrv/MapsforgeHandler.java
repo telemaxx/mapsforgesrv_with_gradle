@@ -146,7 +146,6 @@ public class MapsforgeHandler extends AbstractHandler {
 
 	protected void updateRenderThemeFuture() {
 		renderThemeFuture = new RenderThemeFuture(AwtGraphicFactory.INSTANCE, xmlRenderTheme, displayModel);
-		// new Thread(renderThemeFuture).start();
 		new Thread(renderThemeFuture).start();
 	}
 

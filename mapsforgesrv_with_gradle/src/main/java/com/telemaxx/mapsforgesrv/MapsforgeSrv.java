@@ -29,6 +29,10 @@ public class MapsforgeSrv {
         portArgument.setRequired(false);
         options.addOption(portArgument);
         
+        Option interfaceArgument = new Option("if", "interface", true, "which interface[all,localhost] listening(default: localhost)");
+        interfaceArgument.setRequired(false);
+        options.addOption(interfaceArgument);        
+        
         CommandLineParser parser = new DefaultParser();
         HelpFormatter formatter = new HelpFormatter();
         CommandLine cmd = null;      
@@ -87,12 +91,33 @@ public class MapsforgeSrv {
 		} else {
 			System.out.println("Theme: OSMARENDER");
 		}
-
-		//System.exit(0);
 		
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
+		Server server = null;
+		String listeningInterface = cmd.getOptionValue("interface");
+		if (listeningInterface != null) {
+			listeningInterface = listeningInterface.trim();
+			if (listeningInterface.equals("all")) {
+				System.out.println("listening on all interfaces, port:" + portNumber);
+				server = new Server(portNumber);
+			} else if (listeningInterface.equals("localhost")) {
+				//listeningInterface = "localhost";
+				System.out.println("listening on localhost port:" + portNumber);
+				server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
+			} else {
+				System.out.println("unkown Interface, only \"all\" or \"localhost\" , not " + listeningInterface );
+				System.exit(1);	
+			}
+		} else {
+			System.out.println("listening on localhost port:" + portNumber);
+			server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
+		}
+		
 
-		Server server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
+		//MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
+
+		//Server server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
+		//Server server; = new Server(8080);
 		server.setHandler(mapsforgeHandler);
 		try {
 			server.start();
