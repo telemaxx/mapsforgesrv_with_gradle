@@ -16,4 +16,13 @@ Whats different to the orign?
 	3. build system "gradle" for easier libs management.
 	4. new command line interface: -m mapfile -t themefile(optinal)
 	5. port selection(optional). eg -p 8081
+	6. interface selection(optional) -if [all,localhost]
 	
+longest example:
+java -jar path2jarfile\MapsforgeSrv.jar -m path2mapfile -t path2themefile -p 8080 -if all
+
+	1. -m  path to the mapfile this is mandetorry
+	2. -t  path to the themefile. this is optional, without the internal theme is used
+	3. -p  port to listen. this is optional, without 8080 is used
+	4. -if interface listen on. this is optional, without localhost is used. possibilities -if all -if localhost
+		with "-if all" its useful to run on a server. raspberry runs nice.
