@@ -21,15 +21,15 @@ public class MapsforgeSrv {
 	    mapfileArgument.setRequired(true);
 	    options.addOption(mapfileArgument);
 		
-        Option themefileArgument = new Option("t", "themefile", true, "mapsforge theme file(.xml)");
+        Option themefileArgument = new Option("t", "themefile", true, "mapsforge theme file(.xml), (default: the internal OSMARENDER)");
         themefileArgument.setRequired(false);
         options.addOption(themefileArgument);
         
-        Option portArgument = new Option("p", "port", true, "port, where the server is listening(default: 8080)");
+        Option portArgument = new Option("p", "port", true, "port, where the server is listening(default: " + DEFAULTPORT + ")");
         portArgument.setRequired(false);
         options.addOption(portArgument);
         
-        Option interfaceArgument = new Option("if", "interface", true, "which interface[all,localhost] listening(default: localhost)");
+        Option interfaceArgument = new Option("if", "interface", true, "which interface listening [all,localhost] (default: localhost)");
         interfaceArgument.setRequired(false);
         options.addOption(interfaceArgument);        
         
