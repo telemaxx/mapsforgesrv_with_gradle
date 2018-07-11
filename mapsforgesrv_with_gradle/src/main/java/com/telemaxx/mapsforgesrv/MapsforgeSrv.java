@@ -97,10 +97,10 @@ public class MapsforgeSrv {
 		String listeningInterface = cmd.getOptionValue("interface");
 		if (listeningInterface != null) {
 			listeningInterface = listeningInterface.trim();
-			if (listeningInterface.equals("all")) {
+			if (listeningInterface.toLowerCase().equals("all")) {
 				System.out.println("listening on all interfaces, port:" + portNumber);
 				server = new Server(portNumber);
-			} else if (listeningInterface.equals("localhost")) {
+			} else if (listeningInterface.toLowerCase().equals("localhost")) {
 				//listeningInterface = "localhost";
 				System.out.println("listening on localhost port:" + portNumber);
 				server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
