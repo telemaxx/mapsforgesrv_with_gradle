@@ -120,6 +120,9 @@ public class MapsforgeHandler extends AbstractHandler {
 				try (FileWriter wr = new FileWriter(themePropFile)) {
 
 					Properties tmp = new Properties() {
+
+						private static final long serialVersionUID = 1L;
+
 						@Override
 						public synchronized Enumeration<Object> keys() {
 							return Collections.enumeration(new TreeSet<Object>(super.keySet()));
@@ -269,6 +272,11 @@ public class MapsforgeHandler extends AbstractHandler {
 	}
 
 	private static class MyTileBasedLabelStore extends TileBasedLabelStore {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 
 		public MyTileBasedLabelStore(int capacity) {
 			super(capacity);

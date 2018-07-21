@@ -93,6 +93,7 @@ public class MapsforgeSrv {
 		}
 		
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
+		
 		Server server = null;
 		String listeningInterface = cmd.getOptionValue("interface");
 		if (listeningInterface != null) {
@@ -113,11 +114,6 @@ public class MapsforgeSrv {
 			server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
 		}
 		
-
-		//MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
-
-		//Server server = new Server(InetSocketAddress.createUnresolved("localhost", portNumber));
-		//Server server; = new Server(8080);
 		server.setHandler(mapsforgeHandler);
 		try {
 			server.start();
