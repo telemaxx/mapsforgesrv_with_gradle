@@ -29,6 +29,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     
     compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.11.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.0'
+    
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     
   	implementation 'org.mapsforge:mapsforge-core:[0.9.1]'
