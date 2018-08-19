@@ -8,6 +8,8 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
+apply plugin: 'application'
+mainClassName = "com.telemaxx.mapsforgesrv.MapsforgeSrv"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -17,6 +19,13 @@ repositories {
     mavenCentral()
 }
 
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.telemaxx.mapsforgesrv.MapsforgeSrv'
+        )
+    }
+}
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
