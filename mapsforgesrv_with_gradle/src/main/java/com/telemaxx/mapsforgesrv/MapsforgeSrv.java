@@ -12,19 +12,24 @@ public class MapsforgeSrv {
 		
 		String mapFilePath = null;
 		String themeFilePath = null;
+		String preferredLanguage = null;
 		final int DEFAULTPORT = 8080; 
 		String portNumberString = "" + DEFAULTPORT;
 		
 		Options options = new Options();
-		
+
 		Option mapfileArgument = new Option("m", "mapfile", true, "mapsforge map file(.map)");
 	    mapfileArgument.setRequired(true);
 	    options.addOption(mapfileArgument);
-		
+
         Option themefileArgument = new Option("t", "themefile", true, "mapsforge theme file(.xml), (default: the internal OSMARENDER)");
         themefileArgument.setRequired(false);
         options.addOption(themefileArgument);
-        
+
+		Option languageArgument = new Option("l", "language", true, "preferred language (default: native language)");
+        languageArgument.setRequired(false);
+		options.addOption(languageArgument);
+
         Option portArgument = new Option("p", "port", true, "port, where the server is listening(default: " + DEFAULTPORT + ")");
         portArgument.setRequired(false);
         options.addOption(portArgument);
@@ -91,8 +96,9 @@ public class MapsforgeSrv {
 		} else {
 			System.out.println("Theme: OSMARENDER");
 		}
-		
-		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile);
+		preferredLanguage = cmd.getOptionValue("language");
+		System.out.println("preferredLanguage, using " + preferredLanguage);
+		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile, preferredLanguage);
 		
 		Server server = null;
 		String listeningInterface = cmd.getOptionValue("interface");
