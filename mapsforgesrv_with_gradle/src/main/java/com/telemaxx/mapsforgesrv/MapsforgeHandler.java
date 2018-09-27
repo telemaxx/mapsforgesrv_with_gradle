@@ -71,6 +71,10 @@ public class MapsforgeHandler extends AbstractHandler {
 	private static final Pattern P = Pattern.compile("/(\\d+)/(\\d+)/(\\d+)\\.(.*)");
 
 	public MapsforgeHandler(File mapFile, File themeFile) throws FileNotFoundException {
+		this(mapFile, themeFile, (String)null);
+	}
+
+	public MapsforgeHandler(File mapFile, File themeFile, String preferredLanguage) throws FileNotFoundException {
 		super();
 		this.mapFile = mapFile;
 		this.themeFile = themeFile;
@@ -82,7 +86,7 @@ public class MapsforgeHandler extends AbstractHandler {
 
 		GraphicFactory graphicFactory = AwtGraphicFactory.INSTANCE;
 		multiMapDataStore = new MultiMapDataStore(MultiMapDataStore.DataPolicy.RETURN_FIRST);
-		multiMapDataStore.addMapDataStore(new MapFile(mapFile), true, true);
+		multiMapDataStore.addMapDataStore(new MapFile(mapFile, preferredLanguage), true, true);
 
 		displayModel = new DisplayModel();
 

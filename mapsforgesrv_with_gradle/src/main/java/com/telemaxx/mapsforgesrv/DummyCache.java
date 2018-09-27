@@ -7,8 +7,6 @@ import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.queue.Job;
 import org.mapsforge.map.model.common.Observer;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
 public class DummyCache implements TileCache {
 
 	HashSet<Integer> set = new HashSet<>(10000);
@@ -29,27 +27,27 @@ public class DummyCache implements TileCache {
 
 	@Override
 	public TileBitmap get(Job job) {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
 	public int getCapacity() {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
 	public int getCapacityFirstLevel() {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
 	public TileBitmap getImmediately(Job job) {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
 	public void setWorkingSet(Set<Job> jobs) {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
@@ -59,12 +57,12 @@ public class DummyCache implements TileCache {
 
 	@Override
 	public void addObserver(Observer observer) {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 	@Override
 	public void removeObserver(Observer observer) {
-		throw new NotImplementedException();
+		throw new java.lang.UnsupportedOperationException();
 	}
 
 }
