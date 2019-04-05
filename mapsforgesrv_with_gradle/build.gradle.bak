@@ -8,8 +8,6 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java-library'
-apply plugin: 'application'
-mainClassName = "com.telemaxx.mapsforgesrv.MapsforgeSrv"
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -17,16 +15,8 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
-jar {
-    manifest {
-        attributes(
-            'Main-Class': 'com.telemaxx.mapsforgesrv.MapsforgeSrv'
-        )
-    }
-}
 
 dependencies {
     // This dependency is exported to consumers, that is to say found on their compile classpath.
@@ -43,19 +33,21 @@ dependencies {
     
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     
-  	implementation 'org.mapsforge:mapsforge-core:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-map:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-map-reader:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-themes:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-map-awt:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-poi-awt:[0.10.0]'
-	implementation 'org.mapsforge:mapsforge-poi:[0.10.0]'
+  	implementation 'org.mapsforge:mapsforge-core:[0.9.1]'
+	implementation 'org.mapsforge:mapsforge-map:[0.9.1]'
+	implementation 'org.mapsforge:mapsforge-map-reader:[0.9.1]'
+	implementation 'org.mapsforge:mapsforge-themes:[0.9.1]'
+	implementation 'org.mapsforge:mapsforge-map-awt:[0.9.1]'
+	implementation 'org.mapsforge:mapsforge-poi-awt:[0.9.1]'	
 	
+	implementation 'com.metsci.ext.com.kitfox.svg:svg-salamander:0.1.19'
+
 	implementation 'org.xerial:sqlite-jdbc:3.20.0'
 	
 	implementation 'net.sf.kxml:kxml2:2.3.0' 
     
-    implementation 'org.eclipse.jetty:jetty-server:9.4.12.v20180830'
+    implementation 'org.eclipse.jetty:jetty-server:9.4.11.v20180605'
+    //implementation 'org.eclipse.jetty:jetty-server:9.2.10.v20150310'
     
     //implementation 'org.slf4j:slf4j-api:2.11.0'
     
@@ -66,10 +58,7 @@ dependencies {
 	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-linux'
 	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-osx'
 	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-windows'
-	
-	//implementation 'com.metsci.ext.com.kitfox.svg:svg-salamander:0.1.19'
-	//implementation 'com.kitfox:kitfox-svg-salamander:1.0.8'
-	implementation 'com.github.blackears:svgSalamander:v1.1.1'
+	implementation 'com.metsci.ext.com.kitfox.svg:svg-salamander:0.1.19'
     
     
 }

@@ -99,7 +99,7 @@ public class MapsforgeSrv {
 		preferredLanguage = cmd.getOptionValue("language");
 		System.out.println("preferredLanguage, using " + preferredLanguage);
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile, preferredLanguage);
-		
+    
 		Server server = null;
 		String listeningInterface = cmd.getOptionValue("interface");
 		if (listeningInterface != null) {
