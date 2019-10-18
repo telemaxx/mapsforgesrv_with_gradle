@@ -64,5 +64,5 @@ public class DummyCache implements TileCache {
 	public void removeObserver(Observer observer) {
 		throw new java.lang.UnsupportedOperationException();
 	}
-	
+
 }

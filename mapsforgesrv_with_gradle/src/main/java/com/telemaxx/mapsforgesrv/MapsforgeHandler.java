@@ -246,7 +246,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		} catch (Exception e) {
 			throw new ServletException("Failed to parse \"tileRenderSize\" property: " + e.getMessage(), e);
 		}
-		
+
 		RendererJob job;
 		Bitmap tileBitmap;
 		Tile tile = new Tile(x, y, (byte) z, tileRenderSize);
@@ -292,6 +292,6 @@ public class MapsforgeHandler extends AbstractHandler {
 		}
 
 	}
-	
+
 }
 
