@@ -43,13 +43,13 @@ dependencies {
     
     compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
     
-  	implementation 'org.mapsforge:mapsforge-core:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-map:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-map-reader:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-themes:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-map-awt:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-poi-awt:[0.12.0]'
-	implementation 'org.mapsforge:mapsforge-poi:[0.12.0]'
+  	implementation 'org.mapsforge:mapsforge-core:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-map:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-map-reader:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-themes:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-map-awt:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-poi-awt:[0.13.0]'
+	implementation 'org.mapsforge:mapsforge-poi:[0.13.0]'
 	
 	implementation 'org.xerial:sqlite-jdbc:3.30.1'
 	
@@ -57,13 +57,13 @@ dependencies {
     
     implementation 'org.eclipse.jetty:jetty-server:9.4.25.v20191220'
     
-    implementation 'com.badlogicgames.gdx:gdx:1.9.10'
-	implementation 'com.badlogicgames.gdx:gdx-platform:1.9.10:natives-desktop'
-	implementation 'com.badlogicgames.gdx:gdx-backend-lwjgl:1.9.10'
-	implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
-	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-linux'
-	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-osx'
-	implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-windows'
+    //implementation 'com.badlogicgames.gdx:gdx:1.9.10'
+	//implementation 'com.badlogicgames.gdx:gdx-platform:1.9.10:natives-desktop'
+	//implementation 'com.badlogicgames.gdx:gdx-backend-lwjgl:1.9.10'
+	//implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
+	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-linux'
+	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-osx'
+	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-windows'
 	
 	implementation 'com.github.blackears:svgSalamander:v1.1.2'
     
