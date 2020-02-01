@@ -92,7 +92,7 @@ public class MapsforgeHandler extends AbstractHandler {
 
 		renderer = new DatabaseRenderer(multiMapDataStore, graphicFactory, labelInfoCache, tileBasedLabelStore, true, true, null);
 		renderThemeFuture = new RenderThemeFuture(graphicFactory, xmlRenderTheme, displayModel);
-		XmlRenderThemeMenuCallback callBack = new XmlRenderThemeMenuCallback() {
+		/*XmlRenderThemeMenuCallback callBack = new XmlRenderThemeMenuCallback() {
 
 			@Override
 			public Set<String> getCategories(XmlRenderThemeStyleMenu styleMenu) {
@@ -141,11 +141,11 @@ public class MapsforgeHandler extends AbstractHandler {
 				return result;
 			}
 
-		};
+		};*/
 		if (themeFile == null) {
 			xmlRenderTheme = InternalRenderTheme.OSMARENDER;
 		} else {
-			xmlRenderTheme = new ExternalRenderTheme(themeFile, callBack);
+			xmlRenderTheme = new ExternalRenderTheme(themeFile/*, callBack*/);
 		}
 
 		updateRenderThemeFuture();
