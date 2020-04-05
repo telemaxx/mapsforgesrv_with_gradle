@@ -2,6 +2,8 @@ package com.telemaxx.mapsforgesrv;
 import java.io.File;
 import java.net.BindException;
 import java.net.InetSocketAddress;
+import java.util.ArrayList;
+
 import org.apache.commons.cli.*;
 import org.eclipse.jetty.server.Server;
 
@@ -10,7 +12,7 @@ public class MapsforgeSrv {
 	public static void main(String[] args) throws Exception {
 		System.out.println("MapsforgeSrv - a mapsforge tile server");
 
-		String mapFilePath = null;
+		String[] mapFilePaths = null;
 		String themeFilePath = null;
 		String preferredLanguage = null;
 		final int DEFAULTPORT = 8080; 
@@ -18,7 +20,7 @@ public class MapsforgeSrv {
 
 		Options options = new Options();
 
-		Option mapfileArgument = new Option("m", "mapfile", true, "mapsforge map file(.map)");
+		Option mapfileArgument = new Option("m", "mapfiles", true, "comma-separated list of mapsforge map files (.map)");
 		mapfileArgument.setRequired(true);
 		options.addOption(mapfileArgument);
 
@@ -73,13 +75,18 @@ public class MapsforgeSrv {
 			System.out.println("no port given, using " + DEFAULTPORT);
 		}
 
-		mapFilePath = cmd.getOptionValue("mapfile").trim();
-		File mapFile = new File(mapFilePath);
-		System.out.println("Map file: " + mapFile);
-		if (!mapFile.isFile()) {
-			System.err.println("ERROR: Map file does not exist!");
-			System.exit(1);
+		mapFilePaths = cmd.getOptionValue("mapfiles").trim().split(",");
+		ArrayList<File> mapFiles = new ArrayList<>();
+		for (String path : mapFilePaths) {
+			mapFiles.add(new File(path));
 		}
+		mapFiles.forEach(mapFile -> {
+			System.out.println("Map file: " + mapFile);
+			if (!mapFile.isFile()) {
+				System.err.println("ERROR: Map file does not exist!");
+				System.exit(1);
+			}
+		});
 
 		themeFilePath = cmd.getOptionValue("themefile");
 		if (themeFilePath != null) {
@@ -98,7 +105,7 @@ public class MapsforgeSrv {
 		}
 		preferredLanguage = cmd.getOptionValue("language");
 		System.out.println("preferredLanguage, using " + preferredLanguage);
-		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFile, themeFile, preferredLanguage);
+		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFiles, themeFile, preferredLanguage);
 
 		Server server = null;
 		String listeningInterface = cmd.getOptionValue("interface");
