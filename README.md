@@ -29,8 +29,8 @@ java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map
 		with "-if all" its useful to run on a server. raspberry runs nice.
 	5. -l  preffered language if availible in the map file
 
-### Contributors
 -------------
+### Contributors
 - r_x https://sourceforge.net/projects/mobac/
 - Thomas Th. @telemaxx
 - @pingurus (fixing styleseets error)
