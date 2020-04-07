@@ -11,7 +11,7 @@ https://sourceforge.net/p/mobac/code/HEAD/tree/trunk/tools/MapsforgeSrv/
 
 Whats different to the orign?
 
-	1. mapsforge libs updated from 0.6.0 to 0.10.0
+	1. mapsforge libs updated from 0.6.0 to 0.13.0
 	2. updates all other libs to latest versions
 	3. build system "gradle" for easier libs management.
 	4. new command line interface: -m mapfile -t themefile(optinal) -l language(optional)
