@@ -28,3 +28,10 @@ java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map
 	4. -if interface listen on. this is optional, without localhost is used. possibilities -if all -if localhost
 		with "-if all" its useful to run on a server. raspberry runs nice.
 	5. -l  preffered language if availible in the map file
+
+### Contributors
+-------------
+- r_x https://sourceforge.net/projects/mobac/
+- Thomas Th. @telemaxx
+- @pingurus (fixing styleseets error)
+- Bernd @bjmdev (multi map support)
