@@ -14,13 +14,13 @@ Whats different to the orign?
 	1. mapsforge libs updated from 0.6.0 to 0.13.0
 	2. updates all other libs to latest versions
 	3. build system "gradle" for easier libs management.
-	4. new command line interface: -m mapfile -t themefile(optinal) -l language(optional)
+	4. new command line interface: -m mapfile(s) -t themefile(optinal) -l language(optional)
 	5. port selection(optional). eg -p 8081
 	6. interface selection(optional) -if [all,localhost]
 	7. language selection(optional) -l EN
 	
 longest example:
-java -jar path2jarfile\MapsforgeSrv.jar -m path2mapfile -t path2themefile -p 8080 -if all -l EN
+java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN
 
 	1. -m  path to the mapfile this is mandetorry
 	2. -t  path to the themefile. this is optional, without the internal theme is used
