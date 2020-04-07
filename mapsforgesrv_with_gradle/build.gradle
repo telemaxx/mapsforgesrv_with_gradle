@@ -57,14 +57,6 @@ dependencies {
     
     implementation 'org.eclipse.jetty:jetty-server:9.4.25.v20191220'
     
-    //implementation 'com.badlogicgames.gdx:gdx:1.9.10'
-	//implementation 'com.badlogicgames.gdx:gdx-platform:1.9.10:natives-desktop'
-	//implementation 'com.badlogicgames.gdx:gdx-backend-lwjgl:1.9.10'
-	//implementation 'org.lwjgl.lwjgl:lwjgl:2.9.3'
-	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-linux'
-	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-osx'
-	//implementation 'org.lwjgl.lwjgl:lwjgl-platform:2.9.3:natives-windows'
-	
 	implementation 'com.github.blackears:svgSalamander:v1.1.2'
     
 }
