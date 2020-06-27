@@ -20,10 +20,7 @@ Whats different to the orign?
 	7. language selection(optional) -l EN
     8. seletable style: -s elmt-hiking
 	
-longest example:
-```console
-C:\Users\me java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN -s "elmt-hiking"
-```
+
 
 	1. -m  path to the mapfile this is mandetorry
 	2. -t  path to the themefile. this is optional, without the internal theme is used
@@ -32,6 +29,11 @@ C:\Users\me java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2
 		with "-if all" its useful to run on a server. raspberry runs nice.
 	5. -l  preffered language if availible in the map file
     6. -s  when using a themefile, selecting the style
+
+longest example:
+```console
+C:\Users\me java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN -s "elmt-hiking"
+```
 
 -------------
 ### Contributors
