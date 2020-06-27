@@ -1,3 +1,20 @@
+/*******************************************************************************
+ * Copyright 2019, 2020 Thomas Theussing and Contributors
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
+ * 
+ *******************************************************************************/
+
 package com.telemaxx.mapsforgesrv;
 import java.awt.AlphaComposite;
 import java.awt.Graphics2D;
@@ -57,7 +74,7 @@ public class MapsforgeHandler extends AbstractHandler {
 	private static Logger LOG = Logger.getLogger(MapsforgeHandler.class);
 
 	private final TreeSet<String> KNOWN_PARAMETER_NAMES = new TreeSet<>(
-			Arrays.asList(new String[] { "x", "y", "z", "textScale", "userScale", "transparent", "tileRenderSize" }));
+			Arrays.asList(new String[] { "x", "y", "z", "textScale", "userScale", "transparent", "tileRenderSize" })); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 
 	protected final List<File> mapFiles;
 	protected final File themeFile;
@@ -72,7 +89,7 @@ public class MapsforgeHandler extends AbstractHandler {
 	protected TileBasedLabelStore tileBasedLabelStore = new MyTileBasedLabelStore(1000);
 	protected DummyCache labelInfoCache = new DummyCache();
 
-	private static final Pattern P = Pattern.compile("/(\\d+)/(\\d+)/(\\d+)\\.(.*)");
+	private static final Pattern P = Pattern.compile("/(\\d+)/(\\d+)/(\\d+)\\.(.*)"); //$NON-NLS-1$
 
 	
 	public MapsforgeHandler(List<File> mapFiles, File themeFile) throws FileNotFoundException {
@@ -86,9 +103,9 @@ public class MapsforgeHandler extends AbstractHandler {
 		this.themeFileStyle = themeFileStyle;
 		if (themeFile != null) {
 			if (themeFileStyle != null) {
-				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + "-" + themeFileStyle + ".prop");
+				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + "-" + themeFileStyle + ".prop"); //$NON-NLS-1$ //$NON-NLS-2$
 			} else {
-				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + ".prop");
+				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + ".prop"); //$NON-NLS-1$
 			}
 		} else {
 			themePropFile = null;
@@ -125,7 +142,6 @@ public class MapsforgeHandler extends AbstractHandler {
 					id = styleMenu.getDefaultValue();
 				}
 			
-				//id = styleMenu.getDefaultValue();
 				XmlRenderThemeStyleLayer baseLayer = styleMenu.getLayer(id);
 				Set<String> result = baseLayer.getCategories();
 				for (XmlRenderThemeStyleLayer overlay : baseLayer.getOverlays()) {
@@ -155,10 +171,10 @@ public class MapsforgeHandler extends AbstractHandler {
 						}
 					};
 					tmp.putAll(prop);
-					tmp.store(wr, "MapsforgeSrv theme properties file");
-					System.out.println("Saved enabled overlays to " + themePropFile);
+					tmp.store(wr, "MapsforgeSrv theme properties file"); //$NON-NLS-1$
+					System.out.println("Saved enabled overlays to " + themePropFile); //$NON-NLS-1$
 				} catch (IOException e) {
-					LOG.error("Failed to save MapsforgeSrv theme properties file", e);
+					LOG.error("Failed to save MapsforgeSrv theme properties file", e); //$NON-NLS-1$
 				}
 				return result;
 			}
@@ -182,28 +198,28 @@ public class MapsforgeHandler extends AbstractHandler {
 	protected void showStyleNames() {
 		final MapsforgeStyleParser mapStyleParser = new MapsforgeStyleParser();
 		final List<Style> styles = mapStyleParser.readXML(themeFile.getAbsolutePath());
-		System.out.println("####### Infos about the selected themefile #######");
-		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle());
+		System.out.println("####### Infos about the selected themefile #######"); //$NON-NLS-1$
+		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle()); //$NON-NLS-1$
 		for (final Style style : styles) {
-			System.out.println("Stylename to use for \"-s\" option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage()));
+			System.out.println("Stylename to use for \"-s\" option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage())); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
 			//System.out.println("local Name: " + style.getName(""));
 		}
-		System.out.println("####### Infos end ################################");
+		System.out.println("####### Infos end ################################"); //$NON-NLS-1$
 	}
 	
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 
-		if (request.getPathInfo().equals("/favicon.ico")) {
+		if (request.getPathInfo().equals("/favicon.ico")) { //$NON-NLS-1$
 			response.setStatus(404);
 			return;
 		}
 
-		if (request.getPathInfo().equals("/updatemapstyle")) {
+		if (request.getPathInfo().equals("/updatemapstyle")) { //$NON-NLS-1$
 			updateRenderThemeFuture();
 			try (ServletOutputStream out = response.getOutputStream();) {
-				out.print("<html><body><h1>updatemapstyle</h1>OK</body></html>");
+				out.print("<html><body><h1>updatemapstyle</h1>OK</body></html>"); //$NON-NLS-1$
 				out.flush();
 			}
 			response.setStatus(200);
@@ -219,15 +235,15 @@ public class MapsforgeHandler extends AbstractHandler {
 		while (paramNames.hasMoreElements()) {
 			String name = paramNames.nextElement();
 			if (!KNOWN_PARAMETER_NAMES.contains(name)) {
-				throw new ServletException("Unsupported query parameter: " + name);
+				throw new ServletException("Unsupported query parameter: " + name); //$NON-NLS-1$
 			}
 		}
 
-		System.out.println("request: " + request);
+		System.out.println("request: " + request); //$NON-NLS-1$
 		String path = request.getPathInfo();
 
 		int x, y, z;
-		String ext = "png";
+		String ext = "png"; //$NON-NLS-1$
 		Matcher m = P.matcher(path);
 		if (m.matches()) {
 			x = Integer.parseInt(m.group(2));
@@ -235,51 +251,51 @@ public class MapsforgeHandler extends AbstractHandler {
 			z = Integer.parseInt(m.group(1));
 			ext = m.group(4);
 		} else {
-			x = Integer.parseInt(request.getParameter("x"));
-			y = Integer.parseInt(request.getParameter("y"));
-			z = Integer.parseInt(request.getParameter("z"));
+			x = Integer.parseInt(request.getParameter("x")); //$NON-NLS-1$
+			y = Integer.parseInt(request.getParameter("y")); //$NON-NLS-1$
+			z = Integer.parseInt(request.getParameter("z")); //$NON-NLS-1$
 		}
 		float textScale = 1.0f;
 		try {
-			String tmp = request.getParameter("textScale");
+			String tmp = request.getParameter("textScale"); //$NON-NLS-1$
 			if (tmp != null) {
 				textScale = Float.parseFloat(tmp);
 			} else {
 				textScale = 1.0f;
 			}
 		} catch (Exception e) {
-			throw new ServletException("Failed to parse \"textScale\" property: " + e.getMessage(), e);
+			throw new ServletException("Failed to parse \"textScale\" property: " + e.getMessage(), e); //$NON-NLS-1$
 		}
 
 		float userScale = 1.0f;
 		try {
-			String tmp = request.getParameter("userScale");
+			String tmp = request.getParameter("userScale"); //$NON-NLS-1$
 			if (tmp != null) {
 				userScale = Float.parseFloat(tmp);
 			}
 		} catch (Exception e) {
-			throw new ServletException("Failed to parse \"userScale\" property: " + e.getMessage(), e);
+			throw new ServletException("Failed to parse \"userScale\" property: " + e.getMessage(), e); //$NON-NLS-1$
 		}
 		displayModel.setUserScaleFactor(userScale);
 
 		boolean transparent = false;
 		try {
-			String tmp = request.getParameter("transparent");
+			String tmp = request.getParameter("transparent"); //$NON-NLS-1$
 			if (tmp != null) {
 				transparent = Boolean.parseBoolean(tmp);
 			}
 		} catch (Exception e) {
-			throw new ServletException("Failed to parse \"transparent\" property: " + e.getMessage(), e);
+			throw new ServletException("Failed to parse \"transparent\" property: " + e.getMessage(), e); //$NON-NLS-1$
 		}
 
 		int tileRenderSize = 256;
 		try {
-			String tmp = request.getParameter("tileRenderSize");
+			String tmp = request.getParameter("tileRenderSize"); //$NON-NLS-1$
 			if (tmp != null) {
 				tileRenderSize = Integer.parseInt(tmp);
 			}
 		} catch (Exception e) {
-			throw new ServletException("Failed to parse \"tileRenderSize\" property: " + e.getMessage(), e);
+			throw new ServletException("Failed to parse \"tileRenderSize\" property: " + e.getMessage(), e); //$NON-NLS-1$
 		}
 
 		RendererJob job;
@@ -294,7 +310,7 @@ public class MapsforgeHandler extends AbstractHandler {
 
 		baseRequest.setHandled(true);
 		response.setStatus(200);
-		response.setContentType("image/" + ext);
+		response.setContentType("image/" + ext); //$NON-NLS-1$
 		ImageIO.write(image, ext, response.getOutputStream());
 	}
 

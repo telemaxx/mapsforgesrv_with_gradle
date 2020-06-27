@@ -12,6 +12,7 @@
  * You should have received a copy of the GNU General Public License along with
  * this program; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
+ * 
  *******************************************************************************/
 
 package com.telemaxx.mapsforgesrv;
@@ -51,10 +52,10 @@ public class MapsforgeStyleParser {
    static final String DEFAULTSTYLE    = "defaultvalue"; //$NON-NLS-1$
    static final String VALUE           = "value";        //$NON-NLS-1$
 	static  Boolean Style = false;
-	String na_language = "";
-	String na_value = "";
-	String defaultlanguage = "";
-	String defaultstyle = "";
+	String na_language = ""; //$NON-NLS-1$
+	String na_value = ""; //$NON-NLS-1$
+	String defaultlanguage = ""; //$NON-NLS-1$
+	String defaultstyle = ""; //$NON-NLS-1$
 
 	/**
 	 * just for test purposes
@@ -62,14 +63,14 @@ public class MapsforgeStyleParser {
 	 */
 	public static void main(final String args[]) {
 		final MapsforgeStyleParser mapStyleParser = new MapsforgeStyleParser();
-		final List<Style> styles = mapStyleParser.readXML("C:\\Users\\top\\BTSync\\oruxmaps\\mapstyles\\ELV4\\Elevate.xml");
-		System.out.println("Stylecount: " + styles.size());
-		System.out.println("Defaultlanguage: " + mapStyleParser.getDefaultLanguage());
-		System.out.println("Defaultstyle:    " + mapStyleParser.getDefaultStyle());
+		final List<Style> styles = mapStyleParser.readXML("C:\\Users\\top\\BTSync\\oruxmaps\\mapstyles\\ELV4\\Elevate.xml"); //$NON-NLS-1$
+		System.out.println("Stylecount: " + styles.size()); //$NON-NLS-1$
+		System.out.println("Defaultlanguage: " + mapStyleParser.getDefaultLanguage()); //$NON-NLS-1$
+		System.out.println("Defaultstyle:    " + mapStyleParser.getDefaultStyle()); //$NON-NLS-1$
 		//System.out.println("Defaultstylename de:" + styles.);
 		for (final Style style : styles) {
 			System.out.println(style);
-			System.out.println("local Name: " + style.getName(Locale.getDefault().getLanguage()));
+			System.out.println("local Name: " + style.getName(Locale.getDefault().getLanguage())); //$NON-NLS-1$
 			//System.out.println("local Name: " + style.getName("de_DE")); //$NON-NLS-1$ //$NON-NLS-2$
 			//System.out.println("localisation " + Locale.getDefault().getCountry());
 		}
@@ -130,7 +131,7 @@ public class MapsforgeStyleParser {
 								item.setXmlLayer(attribute.getValue());
 							}
 							if (attribute.getName().toString().equals(VISIBLE)) {
-								if(attribute.getValue().equals("true")){
+								if(attribute.getValue().equals("true")){ //$NON-NLS-1$
 									Style = true;
 								}
 							}
@@ -183,7 +184,7 @@ public class MapsforgeStyleParser {
 class Style {
 	private Map<String, String> name = new HashMap<>();
    private String xmlLayer;
-   private String defaultlanguage = "de";
+   private String defaultlanguage = "de"; //$NON-NLS-1$
 
    public String getDefaultLaguage() {
       return defaultlanguage;
@@ -202,7 +203,7 @@ class Style {
     * @return a String with the local name like "hiking"
     */
    public String getName(final String language) {
-   	if(language.equals("default")){
+   	if(language.equals("default")){ //$NON-NLS-1$
    		return name.get(defaultlanguage);
    	} else
    	if(name.containsKey(language)){
@@ -239,6 +240,6 @@ class Style {
    
    @Override
    public String toString() {
-       return "Item [xmlLayer=" + xmlLayer + " Name= " + name.get(defaultlanguage) + "]";
+       return "Item [xmlLayer=" + xmlLayer + " Name= " + name.get(defaultlanguage) + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
    }
 }
