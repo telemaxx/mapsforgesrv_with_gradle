@@ -21,6 +21,7 @@ Whats different to the orign?
     8. seletable style: -s elmt-hiking
 	
 
+Command parameters:
 
 	1. -m  path to the mapfile this is mandetorry
 	2. -t  path to the themefile. this is optional, without the internal theme is used
