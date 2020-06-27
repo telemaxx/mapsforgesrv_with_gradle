@@ -21,7 +21,7 @@ Whats different to the orign?
     8. seletable style: -s elmt-hiking
 	
 longest example:
-java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN -s "elmt-hiking"
+`java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN -s "elmt-hiking"`
 
 	1. -m  path to the mapfile this is mandetorry
 	2. -t  path to the themefile. this is optional, without the internal theme is used
