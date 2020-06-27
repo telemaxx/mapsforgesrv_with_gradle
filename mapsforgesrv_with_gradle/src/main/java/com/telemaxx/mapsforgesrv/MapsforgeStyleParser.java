@@ -1,3 +1,19 @@
+/*******************************************************************************
+ * Copyright 2019, 2020 Thomas Theussing and Contributors
+ *
+ * This program is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License as published by the Free Software
+ * Foundation version 2 of the License.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, write to the Free Software Foundation,
+ * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110, USA
+ *******************************************************************************/
+
 package com.telemaxx.mapsforgesrv;
 
 import java.io.FileInputStream;
@@ -7,6 +23,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.xml.stream.XMLEventReader;
@@ -24,15 +41,15 @@ import javax.xml.stream.events.XMLEvent;
  * 
  */
 public class MapsforgeStyleParser {
-	static final String ID = "id";
-	static final String XML_LAYER = "layer";
-	static final String STYLE_MENU = "stylemenu";
-	static final String VISIBLE = "visible";
-	static final String NAME = "name";
-	static final String LANG = "lang";
-	static final String DEFAULTLANG = "defaultlang";
-	static final String DEFAULTSTYLE = "defaultvalue";
-	static final String VALUE = "value";
+   static final String ID              = "id";           //$NON-NLS-1$
+   static final String XML_LAYER       = "layer";        //$NON-NLS-1$
+   static final String STYLE_MENU      = "stylemenu";    //$NON-NLS-1$
+   static final String VISIBLE         = "visible";      //$NON-NLS-1$
+   static final String NAME            = "name";         //$NON-NLS-1$
+   static final String LANG            = "lang";         //$NON-NLS-1$
+   static final String DEFAULTLANG     = "defaultlang";  //$NON-NLS-1$
+   static final String DEFAULTSTYLE    = "defaultvalue"; //$NON-NLS-1$
+   static final String VALUE           = "value";        //$NON-NLS-1$
 	static  Boolean Style = false;
 	String na_language = "";
 	String na_value = "";
@@ -45,7 +62,6 @@ public class MapsforgeStyleParser {
 	 */
 	public static void main(final String args[]) {
 		final MapsforgeStyleParser mapStyleParser = new MapsforgeStyleParser();
-		//List<Style> styles = mapStyleParser.readXML("C:\\Users\\top\\BTSync\\oruxmaps\\mapstyles\\TMS\\Tiramisu_3_0_beta1.xml");
 		final List<Style> styles = mapStyleParser.readXML("C:\\Users\\top\\BTSync\\oruxmaps\\mapstyles\\ELV4\\Elevate.xml");
 		System.out.println("Stylecount: " + styles.size());
 		System.out.println("Defaultlanguage: " + mapStyleParser.getDefaultLanguage());
@@ -53,7 +69,9 @@ public class MapsforgeStyleParser {
 		//System.out.println("Defaultstylename de:" + styles.);
 		for (final Style style : styles) {
 			System.out.println(style);
-			System.out.println("local Name: " + style.getName(""));
+			System.out.println("local Name: " + style.getName(Locale.getDefault().getLanguage()));
+			//System.out.println("local Name: " + style.getName("de_DE")); //$NON-NLS-1$ //$NON-NLS-2$
+			//System.out.println("localisation " + Locale.getDefault().getCountry());
 		}
 	}
 	

@@ -14,6 +14,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
@@ -180,7 +181,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		System.out.println("####### Infos about the selected themefile #######");
 		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle());
 		for (final Style style : styles) {
-			System.out.println("Stylename to use for \"-s option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(""));
+			System.out.println("Stylename to use for \"-s option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage()));
 			//System.out.println("local Name: " + style.getName(""));
 		}
 		System.out.println("####### Infos end ################################");
