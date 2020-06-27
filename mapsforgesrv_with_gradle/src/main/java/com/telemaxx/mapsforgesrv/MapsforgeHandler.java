@@ -85,7 +85,11 @@ public class MapsforgeHandler extends AbstractHandler {
 		this.themeFile = themeFile;
 		this.themeFileStyle = themeFileStyle;
 		if (themeFile != null) {
-			themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + ".prop");
+			if (themeFileStyle != null) {
+				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + "-" + themeFileStyle + ".prop");
+			} else {
+				themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + ".prop");
+			}
 		} else {
 			themePropFile = null;
 		}

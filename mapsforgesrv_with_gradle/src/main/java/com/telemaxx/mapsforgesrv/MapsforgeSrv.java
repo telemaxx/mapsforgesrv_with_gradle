@@ -117,7 +117,9 @@ public class MapsforgeSrv {
 		}	
 		
 		preferredLanguage = cmd.getOptionValue("language");
-		System.out.println("preferredLanguage, using " + preferredLanguage);
+		if (preferredLanguage != null) {
+			System.out.println("preferredLanguage, using: " + preferredLanguage);
+		}
 		
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFiles, themeFile, themeFileStyle, preferredLanguage);
 
