@@ -14,13 +14,14 @@ Whats different to the orign?
 	1. mapsforge libs updated from 0.6.0 to 0.13.0
 	2. updates all other libs to latest versions
 	3. build system "gradle" for easier libs management.
-	4. new command line interface: -m mapfile(s) -t themefile(optinal) -l language(optional)
+	4. new command line interface: -m mapfile(s) -t themefile(optinal) -l language(optional) -s themeStyle(optional)
 	5. port selection(optional). eg -p 8081
 	6. interface selection(optional) -if [all,localhost]
 	7. language selection(optional) -l EN
+    8. seletable style: -s elmt-hiking
 	
 longest example:
-java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN
+java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map" -t path2themefile.xml -p 8080 -if all -l EN -s "elmt-hiking"
 
 	1. -m  path to the mapfile this is mandetorry
 	2. -t  path to the themefile. this is optional, without the internal theme is used
@@ -28,6 +29,7 @@ java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map
 	4. -if interface listen on. this is optional, without localhost is used. possibilities -if all -if localhost
 		with "-if all" its useful to run on a server. raspberry runs nice.
 	5. -l  preffered language if availible in the map file
+    6. -s  when using a themefile, selecting the style
 
 -------------
 ### Contributors
@@ -35,3 +37,5 @@ java -jar path2jarfile\MapsforgeSrv.jar -m "path2mapfile1.map, path2mapfile2.map
 - Thomas Th. @telemaxx
 - @pingurus (fixing styleseets error)
 - Bernd @bjmdev (multi map support)
+- @JFritzle (selectable theme style)
+
