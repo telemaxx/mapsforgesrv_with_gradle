@@ -181,7 +181,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		System.out.println("####### Infos about the selected themefile #######");
 		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle());
 		for (final Style style : styles) {
-			System.out.println("Stylename to use for \"-s option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage()));
+			System.out.println("Stylename to use for \"-s\" option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage()));
 			//System.out.println("local Name: " + style.getName(""));
 		}
 		System.out.println("####### Infos end ################################");
