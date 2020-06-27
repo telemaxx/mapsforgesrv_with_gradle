@@ -14,9 +14,11 @@ public class MapsforgeSrv {
 
 		String[] mapFilePaths = null;
 		String themeFilePath = null;
+		String themeFileStyle = null;
 		String preferredLanguage = null;
 		final int DEFAULTPORT = 8080; 
 		String portNumberString = "" + DEFAULTPORT;
+
 
 		Options options = new Options();
 
@@ -27,6 +29,10 @@ public class MapsforgeSrv {
 		Option themefileArgument = new Option("t", "themefile", true, "mapsforge theme file(.xml), (default: the internal OSMARENDER)");
 		themefileArgument.setRequired(false);
 		options.addOption(themefileArgument);
+		
+		Option themefileStyleArgument = new Option("s", "style", true, "style from theme file(.xml), (default: default defined in xml file)");
+		themefileStyleArgument.setRequired(false);
+		options.addOption(themefileStyleArgument);		
 
 		Option languageArgument = new Option("l", "language", true, "preferred language (default: native language)");
 		languageArgument.setRequired(false);
@@ -95,17 +101,25 @@ public class MapsforgeSrv {
 		File themeFile = null;
 		if (themeFilePath != null) {	
 			themeFile = new File(themeFilePath);
-			System.out.println("Render theme file: " + themeFile);
+			System.out.println("Theme file: " + themeFile);
 			if (!themeFile.isFile()) {
-				System.err.println("ERROR: Render theme file does not exist!");
+				System.err.println("ERROR: theme file does not exist!");
 				System.exit(1);
 			}
 		} else {
 			System.out.println("Theme: OSMARENDER");
 		}
+		
+		themeFileStyle = cmd.getOptionValue("style");
+		if (themeFileStyle != null) {
+			themeFileStyle = themeFileStyle.trim();
+			System.out.println("selected ThemeStyle: " + themeFileStyle);
+		}	
+		
 		preferredLanguage = cmd.getOptionValue("language");
 		System.out.println("preferredLanguage, using " + preferredLanguage);
-		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFiles, themeFile, preferredLanguage);
+		
+		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFiles, themeFile, themeFileStyle, preferredLanguage);
 
 		Server server = null;
 		String listeningInterface = cmd.getOptionValue("interface");

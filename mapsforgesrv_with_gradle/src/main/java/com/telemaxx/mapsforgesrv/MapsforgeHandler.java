@@ -60,6 +60,7 @@ public class MapsforgeHandler extends AbstractHandler {
 
 	protected final List<File> mapFiles;
 	protected final File themeFile;
+	protected final String themeFileStyle;
 	protected final File themePropFile;
 	protected final MultiMapDataStore multiMapDataStore;
 	protected final DisplayModel displayModel;
@@ -72,14 +73,16 @@ public class MapsforgeHandler extends AbstractHandler {
 
 	private static final Pattern P = Pattern.compile("/(\\d+)/(\\d+)/(\\d+)\\.(.*)");
 
+	
 	public MapsforgeHandler(List<File> mapFiles, File themeFile) throws FileNotFoundException {
-		this(mapFiles, themeFile, (String)null);
+		this(mapFiles, themeFile, (String)null, (String)null);
 	}
 
-	public MapsforgeHandler(List<File> mapFiles, File themeFile, String preferredLanguage) throws FileNotFoundException {
+	public MapsforgeHandler(List<File> mapFiles, File themeFile, String themeFileStyle, String preferredLanguage) throws FileNotFoundException {
 		super();
 		this.mapFiles = mapFiles;
 		this.themeFile = themeFile;
+		this.themeFileStyle = themeFileStyle;
 		if (themeFile != null) {
 			themePropFile = new File(themeFile.getParentFile(), themeFile.getName() + ".prop");
 		} else {
@@ -99,6 +102,7 @@ public class MapsforgeHandler extends AbstractHandler {
 			@Override
 			public Set<String> getCategories(XmlRenderThemeStyleMenu styleMenu) {
 				renderThemeStyleMenu = styleMenu;
+
 				Properties prop = new Properties();
 				if (themePropFile.isFile()) {
 					try (FileReader r = new FileReader(themePropFile)) {
@@ -107,21 +111,32 @@ public class MapsforgeHandler extends AbstractHandler {
 						e.printStackTrace();
 					}
 				}
-				Set<String> result = new HashSet<>();
-				for (Entry<String, XmlRenderThemeStyleLayer> entry : styleMenu.getLayers().entrySet()) {
-					XmlRenderThemeStyleLayer overlay = entry.getValue();
-					System.out.println(overlay.getId() + " -> " + overlay.getTitle("en") + " enabled: " + overlay.isEnabled());
-					//System.out.println("\t categories: " + Arrays.toString(entry.getValue().getCategories().toArray()));
+
+				String id = null;
+				renderThemeStyleMenu = styleMenu;
+				if (themeFileStyle != null) {
+					id = themeFileStyle;
+				} else {
+					id = styleMenu.getDefaultValue();
+				}
+			
+				//id = styleMenu.getDefaultValue();
+				XmlRenderThemeStyleLayer baseLayer = styleMenu.getLayer(id);
+				Set<String> result = baseLayer.getCategories();
+				for (XmlRenderThemeStyleLayer overlay : baseLayer.getOverlays()) {
+					
 					String propValue = prop.getProperty(overlay.getId());
 					boolean overlayEnabled = overlay.isEnabled();
 					if (propValue != null) {
 						overlayEnabled = Boolean.parseBoolean(propValue);
 					}
 					prop.setProperty(overlay.getId(), Boolean.toString(overlayEnabled));
-					if (overlayEnabled) {
+					
+					if (overlay.isEnabled()) {
 						result.addAll(overlay.getCategories());
 					}
 				}
+
 
 				try (FileWriter wr = new FileWriter(themePropFile)) {
 
@@ -147,6 +162,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		if (themeFile == null) {
 			xmlRenderTheme = InternalRenderTheme.OSMARENDER;
 		} else {
+			showStyleNames();
 			xmlRenderTheme = new ExternalRenderTheme(themeFile, callBack);
 		}
 
@@ -158,6 +174,18 @@ public class MapsforgeHandler extends AbstractHandler {
 		new Thread(renderThemeFuture).start();
 	}
 
+	protected void showStyleNames() {
+		final MapsforgeStyleParser mapStyleParser = new MapsforgeStyleParser();
+		final List<Style> styles = mapStyleParser.readXML(themeFile.getAbsolutePath());
+		System.out.println("####### Infos about the selected themefile #######");
+		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle());
+		for (final Style style : styles) {
+			System.out.println("Stylename to use for \"-s option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(""));
+			//System.out.println("local Name: " + style.getName(""));
+		}
+		System.out.println("####### Infos end ################################");
+	}
+	
 	@Override
 	public void handle(String target, Request baseRequest, HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
