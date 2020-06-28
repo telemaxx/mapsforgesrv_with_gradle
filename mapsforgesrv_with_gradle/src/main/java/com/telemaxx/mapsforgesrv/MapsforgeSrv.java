@@ -50,7 +50,7 @@ public class MapsforgeSrv {
 		themefileArgument.setRequired(false);
 		options.addOption(themefileArgument);
 		
-		Option themefileStyleArgument = new Option("s", "style", true, "style from theme file(.xml), (default: default defined in xml file)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		Option themefileStyleArgument = new Option("s", "style", true, "style of the theme file(.xml), (default: default defined in xml file)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		themefileStyleArgument.setRequired(false);
 		options.addOption(themefileStyleArgument);		
 
@@ -64,7 +64,11 @@ public class MapsforgeSrv {
 
 		Option interfaceArgument = new Option("if", "interface", true, "which interface listening [all,localhost] (default: localhost)"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		interfaceArgument.setRequired(false);
-		options.addOption(interfaceArgument);        
+		options.addOption(interfaceArgument);
+		
+		Option helpArgument = new Option("h", "help", false, "print this help text and exit"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		helpArgument.setRequired(false);
+		options.addOption(helpArgument);		
 
 		CommandLineParser parser = new DefaultParser();
 		HelpFormatter formatter = new HelpFormatter();
@@ -78,6 +82,11 @@ public class MapsforgeSrv {
 			System.exit(1);
 		}
 
+		if(cmd.hasOption("help")) { //$NON-NLS-1$
+			formatter.printHelp("mapsforgesrv", options); //$NON-NLS-1$
+			System.exit(0);
+		}
+		
 		int portNumber = DEFAULTPORT;
 		portNumberString = cmd.getOptionValue("port"); //$NON-NLS-1$
 		if (portNumberString != null) {
@@ -138,7 +147,7 @@ public class MapsforgeSrv {
 		
 		preferredLanguage = cmd.getOptionValue("language"); //$NON-NLS-1$
 		if (preferredLanguage != null) {
-			System.out.println("preferredLanguage, using: " + preferredLanguage); //$NON-NLS-1$
+			System.out.println("preferred map language set to: " + preferredLanguage); //$NON-NLS-1$
 		}
 		
 		MapsforgeHandler mapsforgeHandler = new MapsforgeHandler(mapFiles, themeFile, themeFileStyle, preferredLanguage);

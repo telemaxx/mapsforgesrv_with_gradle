@@ -185,6 +185,7 @@ public class MapsforgeHandler extends AbstractHandler {
 		} else {
 			showStyleNames();
 			xmlRenderTheme = new ExternalRenderTheme(themeFile, callBack);
+
 		}
 
 		updateRenderThemeFuture();
@@ -195,16 +196,31 @@ public class MapsforgeHandler extends AbstractHandler {
 		new Thread(renderThemeFuture).start();
 	}
 
+	/**
+	 * displaying the containing styles inside theme xml
+	 * if a style is given(!=null) but this style did not exist the program terminates
+	 */
 	protected void showStyleNames() {
 		final MapsforgeStyleParser mapStyleParser = new MapsforgeStyleParser();
 		final List<Style> styles = mapStyleParser.readXML(themeFile.getAbsolutePath());
+		Boolean selectedStyleExists = false;
 		System.out.println("####### Infos about the selected themefile #######"); //$NON-NLS-1$
 		System.out.println("Default Style: " + mapStyleParser.getDefaultStyle()); //$NON-NLS-1$
 		for (final Style style : styles) {
 			System.out.println("Stylename to use for \"-s\" option: " + "\"" + style.getXmlLayer() + "\"" + " --> " + style.getName(Locale.getDefault().getLanguage())); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-			//System.out.println("local Name: " + style.getName(""));
-		}
+
+			if(style.getXmlLayer().equals(themeFileStyle)) {
+				selectedStyleExists = true;
+			}
+		}		
 		System.out.println("####### Infos end ################################"); //$NON-NLS-1$
+		if(!selectedStyleExists && themeFileStyle != null) {
+			System.out.println("the given style not found, existing. given style: " + themeFileStyle); //$NON-NLS-1$
+			System.exit(2);
+		}
+		if(selectedStyleExists && themeFileStyle != null) {
+			System.out.println("the given style found: " + themeFileStyle); //$NON-NLS-1$
+		}
 	}
 	
 	@Override
