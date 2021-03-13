@@ -1,5 +1,5 @@
-# mapsforgesrv with gradle
-this project has moved to https://github.com/telemaxx/mapsforgesrv
+### mapsforgesrv with gradle
+## this project has moved to https://github.com/telemaxx/mapsforgesrv
 
 ### mapsforgesrv cloned from the MOBAC project:
 http://mobac.sourceforge.net/
