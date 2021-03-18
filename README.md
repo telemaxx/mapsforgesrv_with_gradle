@@ -1,7 +1,7 @@
-### mapsforgesrv with gradle
+mapsforgesrv with gradle
 ## this project has moved to https://github.com/telemaxx/mapsforgesrv
 
-### mapsforgesrv cloned from the MOBAC project:
+mapsforgesrv cloned from the MOBAC project:
 http://mobac.sourceforge.net/
 
 The MapsforgeSrv is a local webserver providing rendered mapsforge map tiles.
